@@ -13,8 +13,8 @@ because VQCModel._flatten_symbols recurses through lists picking up any dict
 with a 'name'. That means from_symbols registers exactly the same parameter set
 without being touched.
 
-    python -m scripts.integrate_compact --check
-    python -m scripts.integrate_compact
+    python scripts/patches/integrate_compact.py --check
+    python scripts/patches/integrate_compact.py
 """
 from __future__ import annotations
 

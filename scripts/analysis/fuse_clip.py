@@ -1,4 +1,4 @@
-"""Does the quantum ranking carry anything CLIP does not already have?
+"""Sweep a linear mixture of the quantum and CLIP similarity matrices.
 
 Scores every image-caption pair twice on the 5,000-image test set - once with
 CLIP's own text encoder, once with the trained quantum tower - and sweeps
@@ -86,7 +86,7 @@ def main():
     # list in the same order, so walking rows in order reproduces the ordering
     # the loader produced. Anything else silently misaligns the two scores.
     # Take the caption text and the diagrams from the same row, and keep only
-    # the captions whose diagram survived compilation - roughly 0.4% fail to
+    # the captions whose diagram survived compilation, roughly 0.4% fail to
     # parse, so the raw text column has more entries than there are states.
     diagram_col = next(c for c in compiled.columns if c.endswith("_diagram"))
     captions, sizes = [], []

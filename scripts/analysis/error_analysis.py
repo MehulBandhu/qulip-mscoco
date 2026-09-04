@@ -1,4 +1,4 @@
-"""Per-caption analysis: where does the model actually fail?
+"""Break test-set recall down by caption length, circuit size and vocabulary coverage.
 
 Scores the test set once, keeps the rank of every caption, and joins that to
 what the caption looks like - how long it is, how wide its circuit is, whether
@@ -16,11 +16,9 @@ from __future__ import annotations
 
 import argparse
 import csv
-import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 import torch
 import torch.nn.functional as F

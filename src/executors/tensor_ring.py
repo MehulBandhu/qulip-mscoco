@@ -1,4 +1,4 @@
-"""Exact tensor-ring form of a word circuit, so wide words stop costing 2^N.
+"""Represent a word circuit as tensor-ring cores of bond dimension 2^L.
 
 The dense path materialises the full statevector, which is fine at four wires
 and hopeless at twenty-one. But the circuit has structure worth exploiting.
@@ -79,7 +79,7 @@ def word_cores(angles: torch.Tensor, arity: int,
         # parity carry, and the pair becomes the new bond.
         d = cores.shape[2]
         cores = torch.einsum('wnaxb,nmxyc->wnamybc', cores, ring)
-        cores = cores.permute(0, 1, 2, 3, 4, 5, 6).reshape(
+        cores = cores.reshape(
             n_words, arity, d * 2, 2, d * 2)
 
     return cores

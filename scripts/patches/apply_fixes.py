@@ -2,7 +2,7 @@
 
 Run once after cloning:
 
-    python -m scripts.apply_fixes
+    python scripts/patches/apply_fixes.py
 
 Each fix is separate and idempotent, so re-running is safe and reports what was
 already done. Every one of these is upstream-worthy; the intention is that this

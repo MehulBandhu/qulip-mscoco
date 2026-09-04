@@ -74,6 +74,12 @@ LABELS = {
     "oov": "per-role fallback for unseen words",
     "drop": "symbol dropout", "gendrop": "generator with symbol dropout",
     "gen_oov": "generator with per-role fallback",
+    # Zero-shot word-order transfer, evaluated on ARO.
+    "aro_vqcfull_fast": "ARO: 1 qubit/type, 2 layers, full MSCOCO",
+    "aro_vqcfull": "ARO: 1 qubit/type, 2 layers, full MSCOCO",
+    "aro_vqc20k": "ARO: grammar, 20k images",
+    "aro_vqc20k_spider": "ARO: bag of words, 20k images",
+    "aro_vqc10k": "ARO: grammar, 10k images",
 }
 
 
@@ -112,7 +118,7 @@ def read_training():
 
 
 def read_tests():
-    rows = []
+    rows, unmapped = [], set()
     for f in sorted(list((ROOT / "results").glob("*.txt"))
                     + list((ROOT / "logs").glob("q-bench*.out"))
                     + list((ROOT / "logs").glob("q-aro*.out"))):
@@ -125,15 +131,24 @@ def read_tests():
                 continue
             name = re.match(r"(\S+)", block)
             tag = name.group(1) if name else f.stem
-            tag = re.sub(r"^(mscoco-vqcfull-|mscoco-|bench_|vqcfull_)", "", tag)
+            tag = re.sub(r"^(mscoco-vqcfull-|mscoco-|bench_|vqcfull_|q-aro-|q-)", "", tag)
+            tag = re.sub(r"-\d{6,}$", "", tag)
             tag = re.sub(r"(_grid|_all|_last|_final|_ep\d+)$", "", tag)
             if tag in ("===", "benchmarking") or tag.startswith("#"):
                 continue
-            row = dict(run=tag, label=LABELS.get(tag, tag),
+            if tag not in LABELS:
+                # An unmapped tag tables the same run a second time under its
+                # raw name. Better to drop it and notice than to inflate the
+                # table.
+                unmapped.add(tag)
+                continue
+            row = dict(run=tag, label=LABELS[tag],
                        epoch=int(ep.group(1)), source=f.name)
             for k, v in vals.items():
                 row[k.replace("coco5k_", "")] = round(float(v) * 100, 2)
             rows.append(row)
+    if unmapped:
+        print(f'  skipped {len(unmapped)} unmapped tags: {sorted(unmapped)[:8]}')
     return rows
 
 

@@ -20,8 +20,8 @@ untouched.
       the same shape the table had, so the gather, the topology bucketing and
       the contraction are all unchanged.
 
-    python -m scripts.add_generator
-    python -m scripts.add_generator --check
+    python scripts/patches/add_generator.py
+    python scripts/patches/add_generator.py --check
 """
 from __future__ import annotations
 

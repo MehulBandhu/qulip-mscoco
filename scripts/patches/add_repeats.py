@@ -16,8 +16,8 @@ nearest-neighbour, with exactly one CNOT crossing any cut per layer. Long-range
 gates put many CNOTs across the middle cut and the bond blows up. Repeating a
 local ring keeps the bound at 2^(L*R).
 
-    python -m scripts.add_repeats --check
-    python -m scripts.add_repeats
+    python scripts/patches/add_repeats.py --check
+    python scripts/patches/add_repeats.py
 
 Enable with `text.entangler_repeats: 2`.
 """

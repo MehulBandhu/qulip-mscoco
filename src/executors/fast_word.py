@@ -1,4 +1,4 @@
-"""Faster word-state simulation. Standalone - nothing here is imported by the
+"""Apply a CNOT ring as a single permutation of the statevector.
 training code until it has been verified.
 
 The CNOT ring is currently applied one gate at a time, and each gate does a

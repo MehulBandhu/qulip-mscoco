@@ -12,8 +12,8 @@ at a given position, so the cost is a few thousand parameters, and they run
 alongside the word circuits rather than after them, so depth is unchanged. That
 matters: depth is what made the grammar version untrainable.
 
-    python -m scripts.add_positional          # apply
-    python -m scripts.add_positional --check  # report only
+    python scripts/patches/add_positional.py          # apply
+    python scripts/patches/add_positional.py --check  # report only
 """
 from __future__ import annotations
 

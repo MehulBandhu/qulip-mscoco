@@ -1,4 +1,4 @@
-"""Where does the time in a quantum training batch actually go?
+"""Time each stage of a training batch: mapping, both towers, loss and optimiser.
 
 The full-COCO run took 16.7 hours for its first epoch, but that epoch also pays
 the one-off contraction-path search for every distinct circuit shape in the
@@ -9,14 +9,13 @@ real price per epoch and the only way forward is splitting batches across cores.
 This times the same batches twice in one process. The first pass builds the
 cache, the second reuses it, so the gap between them is the search cost.
 
-    python -m scripts.profile_cost --data data/mscoco/processed/train_full.pkl
+    python scripts/analysis/profile_cost.py --data data/mscoco/processed/train_full.pkl
 """
 from __future__ import annotations
 
 import argparse
 import pickle
 import time
-from pathlib import Path
 
 from modules.compilation.quantum.ansatz import CustomV5Ansatz
 from modules.models.text.einsum_quantum import VQCModel

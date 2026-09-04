@@ -17,8 +17,8 @@ hashing the word against a salt redrawn each forward pass, so it stays
 consistent across that word's gates within a batch without needing to build and
 pass a mask around.
 
-    python -m scripts.add_symbol_dropout
-    python -m scripts.add_symbol_dropout --check
+    python scripts/patches/add_symbol_dropout.py
+    python scripts/patches/add_symbol_dropout.py --check
 
 Enable with `text.symbol_dropout: 0.1` in the config. Needs oov_fallback on,
 since it routes through the role slots.

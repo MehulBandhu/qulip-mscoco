@@ -15,8 +15,8 @@ The part of speech comes from the CCG type rather than a tagger, since the parse
 has already committed to it: a bare 'n' is a noun, a type mentioning 's' is
 verbal, everything else is left alone.
 
-    python -m scripts.add_lemma          # apply
-    python -m scripts.add_lemma --check  # report only
+    python scripts/patches/add_lemma.py          # apply
+    python scripts/patches/add_lemma.py --check  # report only
 
 Enable with `text.lemmatise: true`.
 """

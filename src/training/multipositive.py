@@ -1,4 +1,4 @@
-"""Multi-positive training: several captions of the same image in one update.
+"""Train with several captions of the same image as positives in one batch.
 
 Training currently samples one caption per image per epoch. Over 100 epochs
 every caption is seen about twenty times, so nothing is wasted - but the five
@@ -149,7 +149,7 @@ class MultiPositive_InfoNCE(nn.Module):
                 (text_emb @ text_emb.conj().t()).abs(), 0.0, 1.0 - self.eps)
             closeness = 1.0 - (torch.acos(overlap) / (math.pi / 2))
             # Skip the diagonal and any pair of captions describing the same
-            # image - separating those is what this objective works against.
+            # image, separating those is what this objective works against.
             same = owner[:, None] == owner[None, :]
             loss = loss + self.lambda_reg * closeness[~same].mean()
 

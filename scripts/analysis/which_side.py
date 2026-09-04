@@ -1,4 +1,4 @@
-"""Which tower is the bottleneck?
+"""Substitute CLIP embeddings for one tower at a time, to locate the retrieval gap.
 
 Four scorings of the same 5,000-image test set, swapping one side at a time for
 CLIP's own representation:

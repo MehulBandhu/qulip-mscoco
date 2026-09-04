@@ -1,4 +1,4 @@
-"""Does the loss concentrate as the circuits get bigger?
+"""Measure the spread of the loss over random initialisations, as a function of circuit width.
 
 The standard barren-plateau signature is loss concentration at INITIALISATION:
 draw random parameters many times, and if the spread of the loss shrinks

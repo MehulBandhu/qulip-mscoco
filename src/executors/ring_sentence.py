@@ -1,4 +1,4 @@
-"""Feed tensor-ring cores straight into the sentence contraction.
+"""Feed tensor-ring cores into the sentence contraction.
 
 The prototype contracted the cores back to a dense statevector to check them,
 which throws away the whole point. Here each word contributes N cores instead of
@@ -82,7 +82,7 @@ def ring_recipe(ansatz, tn):
         for i in range(arity):
             slots.append(len(input_indices))
             # A one-wire word has bond dimension 1 and no ring, so its two bond
-            # legs are the same character - a trace over a length-1 axis.
+            # legs are the same character, a trace over a length-1 axis.
             right = bonds[(i + 1) % arity] if arity > 1 else bonds[0]
             input_indices.append([bonds[i], out_wires[i], right])
 

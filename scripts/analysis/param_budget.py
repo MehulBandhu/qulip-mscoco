@@ -1,4 +1,4 @@
-"""Where does the model's capacity actually go?
+"""Report how the parameter count divides across grammatical orders and word frequencies.
 
 Every distinct (word, grammatical type) gets its own parameters, so the budget
 splits three ways: bare nouns, which are pure vocabulary; higher-order words
@@ -9,7 +9,7 @@ their own block and neither can help the other.
 It also measures drift: how far each parameter moved from its initialisation
 during training. A group that barely moved was not where learning happened.
 
-    python -m scripts.param_budget -cfg configs/tn10k.yaml -cp <best.pt>
+    python scripts/analysis/param_budget.py -cfg configs/tn10k.yaml -cp <best.pt>
 
 Reinitialises a second copy of the model under the same seed to recover the
 starting values, so nothing extra needs to have been saved during training.
@@ -21,7 +21,6 @@ import re
 from collections import Counter, defaultdict
 
 import pandas as pd
-import torch
 
 from modules.data_pipeline.engine import DataEngine
 from modules.utils.factory import build_experiment

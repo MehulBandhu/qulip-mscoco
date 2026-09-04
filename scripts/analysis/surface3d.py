@@ -3,9 +3,9 @@
 loss_surface.py writes the raw grid alongside its contour plot, so this reads
 that and redraws it without recomputing anything.
 
-    python -m scripts.surface3d                       # every grid it finds
-    python -m scripts.surface3d --name vqcfull        # just one
-    python -m scripts.surface3d --elev 40 --azim -120 # change the viewpoint
+    python scripts/analysis/surface3d.py                       # every grid it finds
+    python scripts/analysis/surface3d.py --name vqcfull        # just one
+    python scripts/analysis/surface3d.py --elev 40 --azim -120 # change the viewpoint
 """
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Compact executor: contract each word first, then the grammar.
+"""Contract each word's gates into one tensor before the sentence network.
 
 The current path hands opt_einsum every gate of every word - about 269 operands
 per caption - and pays Python dispatch on all of them. But a word's gates never
@@ -11,7 +11,7 @@ Contraction is associative, so this is the same model with the same parameters
 and the same gradients. Only the evaluation order changes. Operands per caption
 drop from ~269 to ~14.
 
-Nothing here is wired into the model yet. Run it to check the compact path
+Wired in behind the text.compact config flag by scripts/patches/integrate_compact.py. Run it to check the compact path
 reproduces the current one on real captions, then integrate:
 
     python compact_exec.py --n 32
@@ -27,7 +27,6 @@ import torch
 from opt_einsum import contract
 
 from modules.compilation.quantum.gates import Rz, Ry
-from modules.utils.tensor_ops import interleaved2einsum
 
 
 # --------------------------------------------------------------------------

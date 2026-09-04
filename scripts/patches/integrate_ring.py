@@ -7,8 +7,8 @@ Off unless a config sets `text.ring: true`, so runs already in flight keep the
 path they started on. Ring implies compact - both emit word specs rather than
 gate lists - so the ring branch is checked first.
 
-    python -m scripts.integrate_ring --check
-    python -m scripts.integrate_ring
+    python scripts/patches/integrate_ring.py --check
+    python scripts/patches/integrate_ring.py
 """
 from __future__ import annotations
 
@@ -45,7 +45,7 @@ RING_METHOD = '''
             for i in range(arity):
                 slots.append(len(input_indices))
                 # A one-wire word has no ring and bond dimension 1, so both of
-                # its bond legs are the same character - a trace over a
+                # its bond legs are the same character, a trace over a
                 # length-1 axis.
                 right = bonds[(i + 1) % arity] if arity > 1 else bonds[i]
                 input_indices.append([bonds[i], out_wires[i], right])

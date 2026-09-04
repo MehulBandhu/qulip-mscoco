@@ -9,7 +9,7 @@ circuits train badly is barren plateaus - landscapes flat enough that gradients
 carry almost no signal. Running this on both towers says whether that is what
 is happening here or whether it is something else.
 
-    python -m scripts.loss_surface -cfg configs/vqc5k.yaml -cp <best.pt> --grid 11
+    python scripts/analysis/loss_surface.py -cfg configs/vqc5k.yaml -cp <best.pt> --grid 11
 
 Writes graphs/surface_<name>.png and the raw grid alongside it as .npz, so the
 plot can be redrawn without recomputing.

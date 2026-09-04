@@ -36,7 +36,10 @@ Image-to-text recall on all 5,000 test images and 24,909 captions. Chance is
 | 1 qubit/type, 2 layers | 1,156,525 | 3.08 | 12.46 | 20.10 |
 | classical tensor network | 2,310,327,176 | 1.72 | 6.30 | 9.84 |
 
-Every row is the final checkpoint of a 100-epoch run, evaluated once. Full
+Every quantum row is the final checkpoint of a 100-epoch run, evaluated once.
+The classical tower ran 30 epochs; its validation recall had been flat for its
+last four (0.065, 0.067, 0.068, 0.065) while its loss was still falling, so it
+had stopped improving at retrieval before it stopped training. Full
 tables are in [`report/summary.md`](report/summary.md); every measurement,
 including intermediate checkpoints, is in
 [`report/test_results.csv`](report/test_results.csv).
@@ -101,9 +104,11 @@ model. Collected in
 
 ## Reproducing
 
+Both run from the repository root.
+
 ```bash
 python scripts/report/compile_results.py   # logs and results -> report/*.csv
-python figures_v4.py                       # csv -> report/figures/*.pdf
+python scripts/report/figures.py           # csv -> report/figures/*.pdf
 ```
 
 Training and evaluation run through `scripts/jobs/`, one Slurm script per
