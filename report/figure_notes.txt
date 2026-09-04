@@ -1,4 +1,4 @@
-parameters: exponent 0.471 [0.336, 0.554], R2 0.946, 8 points, 0.67 decades
-depth at 2 qubits/type: exponent in parameters 0.50
+parameters: exponent 0.507 [0.374, 0.612], R2 0.927, 9 points, 0.67 decades
+depth at 2 qubits/type: exponent in parameters 0.58
 depth at 3 qubits/type: exponent in parameters 0.37
 width at 2 layers: exponent in parameters 0.51
