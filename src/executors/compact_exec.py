@@ -192,7 +192,7 @@ def main():
     for i, g in enumerate(got):
         worst = max(worst, (want[i] - g).abs().max().item())
     print(f"max abs difference over {len(got)} captions: {worst:.2e}")
-    print("MATCH" if worst < 1e-4 else "MISMATCH — do not integrate")
+    print("MATCH" if worst < 1e-4 else "MISMATCH do not integrate")
 
 
 if __name__ == "__main__":

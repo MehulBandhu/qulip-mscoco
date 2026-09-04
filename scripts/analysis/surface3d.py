@@ -72,7 +72,7 @@ def main():
     pattern = f"surface_{args.name}.npz" if args.name else "surface_*.npz"
     grids = sorted(OUT.glob(pattern))
     if not grids:
-        raise SystemExit(f"no grids matching {OUT}/{pattern} — run loss_surface first")
+        raise SystemExit(f"no grids matching {OUT}/{pattern} run loss_surface first")
 
     for path in grids:
         draw(path, args.elev, args.azim)

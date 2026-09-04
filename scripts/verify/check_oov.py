@@ -2,7 +2,7 @@ import torch, glob
 init = sorted(glob.glob("checkpoints/mscoco-vqc10k-drop/*/*/init.pt"))
 best = sorted(glob.glob("checkpoints/mscoco-vqc10k-drop/*/*/best.pt"))
 if not init:
-    print("no init.pt — that run predates the snapshot patch"); raise SystemExit
+    print("no init.pt that run predates the snapshot patch"); raise SystemExit
 a = torch.load(init[-1], map_location="cpu")["text"]["params"]
 b = torch.load(best[-1], map_location="cpu")["text"]["params"]
 n_sym = 338953

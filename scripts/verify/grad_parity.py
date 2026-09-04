@@ -1,3 +1,4 @@
+import sys; sys.path.insert(0, "src/executors")
 import pickle, torch
 from compact_exec import compact_recipe, forward_compact
 from modules.compilation.quantum.ansatz import CustomV5Ansatz
@@ -24,4 +25,4 @@ g_new = m.params.grad.clone()
 d = (g_old - g_new).abs().max().item()
 print(f"gradient max abs difference: {d:.2e}")
 print(f"nonzero in each: {(g_old.abs()>1e-12).sum()} vs {(g_new.abs()>1e-12).sum()}")
-print("MATCH" if d < 1e-5 else "MISMATCH — do not integrate")
+print("MATCH" if d < 1e-5 else "MISMATCH do not integrate")

@@ -2,7 +2,7 @@
 
 The full-COCO run took 16.7 hours for its first epoch, but that epoch also pays
 the one-off contraction-path search for every distinct circuit shape in the
-dataset — around 107,000 of them. If that search is most of the cost, later
+dataset around 107,000 of them. If that search is most of the cost, later
 epochs are far cheaper and the run is viable. If it isn't, 16.7 hours is the
 real price per epoch and the only way forward is splitting batches across cores.
 

@@ -1,3 +1,4 @@
+import sys; sys.path.insert(0, "src/executors")
 import pickle, torch
 from ring_sentence import ring_recipe, forward_ring
 from compact_exec import compact_recipe, forward_compact

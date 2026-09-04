@@ -186,7 +186,7 @@ sbatch scripts/jobs/bench.sh vqcfull_n2l5
 ## Layout
 
 ```
-src/executors/     the three ways of evaluating the circuits
+src/executors/     the circuit executors
 src/training/      multi-positive dataset and loss
 scripts/patches/   fixes and features applied to the QCLIP fork
 scripts/analysis/  diagnostics that do not train anything
