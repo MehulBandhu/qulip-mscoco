@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --job-name=q-full-n4l4
+#SBATCH --partition=all
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=400G
+#SBATCH --time=10-00:00:00
+#SBATCH --output=/cephfs/mbandhu/qulip/logs/%x-%j.out
+#SBATCH --exclude=worker086
+
+cd /cephfs/mbandhu/qulip
+source .venv/bin/activate
+export QULIP_DEVICE=cpu QULIP_SKIP_METRICS=1 OMP_NUM_THREADS=4
+
+echo "node $(hostname) | started $(date)"
+python -u -m scripts.train -cfg configs/vqcfull_n4l4.yaml || exit 1
+
+CKPT=$(ls -t checkpoints/mscoco-vqcfull-n4l4/*/*/best.pt | head -1)
+python -u -m scripts.benchmark -cfg configs/vqcfull_n4l4.yaml -cp "$CKPT"
+echo "finished $(date)"

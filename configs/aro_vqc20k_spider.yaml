@@ -1,0 +1,48 @@
+model_type: "vqc"
+seed: 42
+
+batch_size: 256
+qlr: 0.001
+clr: 0.00001
+embedding_qubits: 9
+
+epochs: 40
+lr_patience: 100000
+
+dataset:
+  name: "mscoco-vqc20k-spider"
+  class: "modules.data_pipeline.datasets.CocoDataset"
+  collate_fn: "modules.data_pipeline.datasets.coco_collate_fn"
+  eval_mapper: "modules.models.fusion.engine.mscoco_mapper"
+  train:
+    text_path: "data/mscoco/processed/train_20k.pkl"
+    img_path: "data/mscoco/processed/image_embeddings.pt"
+  val:
+    text_path: "data/mscoco/processed/val_1k.pkl"
+    img_path: "data/mscoco/processed/image_embeddings.pt"
+    diagnostics: ["global_retrieval"]
+  test:
+    att:
+      class: "modules.data_pipeline.datasets.ARODataset"
+      collate_fn: "modules.data_pipeline.datasets.aro_collate_fn"
+      text_path: "data/aro/combined/test_att.pkl"
+      img_path: "data/aro/combined/image_embeddings.pt"
+      task: "evaluate_text_choice"
+    rel:
+      class: "modules.data_pipeline.datasets.ARODataset"
+      collate_fn: "modules.data_pipeline.datasets.aro_collate_fn"
+      text_path: "data/aro/combined/test_rel.pkl"
+      img_path: "data/aro/combined/image_embeddings.pt"
+      task: "evaluate_text_choice"
+text:
+  ansatz: "custom_v5"
+  n: 1
+  s: 1
+  p: 1
+  layers: 2
+  curry: false
+  spider: true
+
+vision:
+  layers: 4
+  method: 'mlp'

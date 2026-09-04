@@ -1,0 +1,60 @@
+# Classical tensor network on ARO, matching DisCoCLIP's aro_default.yaml.
+# Their released code scores 0.6003 on the combined test split, so that's the
+# number to hit before trusting anything downstream.
+#
+# Two settings that look wrong but aren't:
+#   n/s/p are tensor dimensions here, not qubit counts like they are for vqc.
+#   max_order is the threshold ABOVE which MPS kicks in, so 1 decomposes
+#   everything except plain nouns. Leaving it at 4 keeps every word dense.
+
+model_type: "tn"
+seed: 42
+
+batch_size: 64
+qlr: 0.003
+clr: 0.00001
+epochs: 30
+lr_patience: 100000
+
+embedding_dim: 512
+
+text:
+  ansatz: "custom_v5"
+  n: 512
+  s: 512
+  p: 512
+  layers: 2
+  bond_dim: 10
+  max_order: 1
+  curry: false
+  spider: false
+
+vision:
+  layers: 4
+  method: 'amp'
+
+dataset:
+  name: "aro-tn"
+  class: "modules.data_pipeline.datasets.ARODataset"
+  collate_fn: "modules.data_pipeline.datasets.aro_collate_fn"
+  eval_mapper: "modules.models.fusion.engine.aro_mapper"
+  train:
+    text_path: "data/aro/combined/train.pkl"
+    img_path: "data/aro/combined/image_embeddings.pt"
+  val:
+    text_path: "data/aro/combined/val.pkl"
+    img_path: "data/aro/combined/image_embeddings.pt"
+    diagnostics: ["evaluate_text_choice", "diagnostic_text_choice"]
+  test:
+    att:
+      class: "modules.data_pipeline.datasets.ARODataset"
+      collate_fn: "modules.data_pipeline.datasets.aro_collate_fn"
+      text_path: "data/aro/combined/test_att.pkl"
+      img_path: "data/aro/combined/image_embeddings.pt"
+      task: "evaluate_text_choice"
+    rel:
+      class: "modules.data_pipeline.datasets.ARODataset"
+      collate_fn: "modules.data_pipeline.datasets.aro_collate_fn"
+      text_path: "data/aro/combined/test_rel.pkl"
+      img_path: "data/aro/combined/image_embeddings.pt"
+      task: "evaluate_text_choice"

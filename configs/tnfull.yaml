@@ -1,0 +1,45 @@
+model_type: "tn"
+seed: 42
+
+batch_size: 64
+qlr: 0.0003
+clr: 0.00001
+embedding_dim: 512
+
+epochs: 30
+lr_patience: 100000
+
+dataset:
+  name: "mscoco-tnfull"
+  class: "modules.data_pipeline.datasets.CocoDataset"
+  collate_fn: "modules.data_pipeline.datasets.coco_collate_fn"
+  eval_mapper: "modules.models.fusion.engine.mscoco_mapper"
+  train:
+    text_path: "data/mscoco/processed/train_full.pkl"
+    img_path: "data/mscoco/processed/image_embeddings.pt"
+  val:
+    text_path: "data/mscoco/processed/val_1k.pkl"
+    img_path: "data/mscoco/processed/image_embeddings.pt"
+    diagnostics: ["global_retrieval"]
+  test:
+    coco5k:
+      class: "modules.data_pipeline.datasets.CocoDataset"
+      collate_fn: "modules.data_pipeline.datasets.coco_collate_fn"
+      text_path: "data/mscoco/processed/validation.pkl"
+      img_path: "data/mscoco/processed/image_embeddings.pt"
+      task: "global_retrieval"
+
+text:
+  ansatz: "custom_v5"
+  n: 512
+  s: 512
+  p: 512
+  layers: 2
+  bond_dim: 10
+  max_order: 1
+  curry: false
+  spider: false
+
+vision:
+  layers: 4
+  method: 'amp'

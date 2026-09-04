@@ -1,0 +1,32 @@
+{
+ "1": {
+  "mean_word": 2.929472974274978,
+  "median_word": 2.0,
+  "max_word": 20,
+  "mean_caption": 30.405
+ },
+ "2": {
+  "mean_word": 4.991810386357067,
+  "median_word": 4.0,
+  "max_word": 31,
+  "mean_caption": 51.81
+ },
+ "3": {
+  "mean_word": 7.054147798439156,
+  "median_word": 6.0,
+  "max_word": 42,
+  "mean_caption": 73.215
+ },
+ "4": {
+  "mean_word": 9.116485210521244,
+  "median_word": 8.0,
+  "max_word": 53,
+  "mean_caption": 94.62
+ },
+ "5": {
+  "mean_word": 11.178822622603334,
+  "median_word": 10.0,
+  "max_word": 64,
+  "mean_caption": 116.025
+ }
+}

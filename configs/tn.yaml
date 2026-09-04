@@ -1,0 +1,32 @@
+model_type: "tn"
+batch_size: 512
+learning_rate: 0.001
+epochs: 25
+embedding_dim: 512
+
+text:
+  n: 128
+  s: 128
+  p: 128
+  bond_dim: 32
+  max_order: 2
+
+vision:
+  use_clip: false
+
+dataset:
+  name: "mscoco"
+  class: "modules.data_pipeline.datasets.CocoDataset"
+  collate_fn: "modules.data_pipeline.datasets.coco_collate_fn"
+  eval_mapper: "modules.models.fusion.engine.mscoco_mapper"
+
+splits:
+  train:
+    text_path: "data/mscoco/processed/train.pkl"
+    img_path: "data/mscoco/raw/images/train2017.zip"
+  val:
+    text_path: "data/mscoco/processed/validation.pkl"
+    img_path: "data/mscoco/raw/images/val2017.zip"
+
+evaluation_tasks:
+  - "global_retrieval"

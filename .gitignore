@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Too large for git: embeddings, parsed circuits, checkpoints, raw logs.
+data/
+checkpoints/
+logs/
+runs/
+*.pkl
+*.pt
+*.zip
+
+# Keep the compiled tables and figures, not the intermediates.
+report/*.npz

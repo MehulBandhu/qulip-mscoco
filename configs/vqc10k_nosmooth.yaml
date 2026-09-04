@@ -1,0 +1,45 @@
+loss:
+  label_smoothing: 0.0
+model_type: "vqc"
+seed: 42
+
+batch_size: 256
+qlr: 0.001
+clr: 0.00001
+embedding_qubits: 9
+
+epochs: 30
+lr_patience: 100000
+
+dataset:
+  name: "mscoco-vqc10k-nosmooth"
+  class: "modules.data_pipeline.datasets.CocoDataset"
+  collate_fn: "modules.data_pipeline.datasets.coco_collate_fn"
+  eval_mapper: "modules.models.fusion.engine.mscoco_mapper"
+  train:
+    text_path: "data/mscoco/processed/train_10k.pkl"
+    img_path: "data/mscoco/processed/image_embeddings.pt"
+  val:
+    text_path: "data/mscoco/processed/val_1k.pkl"
+    img_path: "data/mscoco/processed/image_embeddings.pt"
+    diagnostics: ["global_retrieval"]
+  test:
+    coco5k:
+      class: "modules.data_pipeline.datasets.CocoDataset"
+      collate_fn: "modules.data_pipeline.datasets.coco_collate_fn"
+      text_path: "data/mscoco/processed/validation_20k.pkl"
+      img_path: "data/mscoco/processed/image_embeddings.pt"
+      task: "global_retrieval"
+
+text:
+  ansatz: "custom_v5"
+  n: 1
+  s: 1
+  p: 1
+  layers: 2
+  curry: false
+  spider: false
+
+vision:
+  layers: 4
+  method: 'mlp'
