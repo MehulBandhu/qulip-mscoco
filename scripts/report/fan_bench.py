@@ -5,7 +5,7 @@ fourteen in sequence wastes most of a day for no reason. This writes one script
 per checkpoint and submits them all; the whole set finishes in the time one of
 them takes.
 
-Memory is requested per configuration rather than uniformly - bond dimension is
+Memory is requested per configuration rather than uniformly, bond dimension is
 2^L, so a two-layer run needs a fraction of what a four-layer run does, and
 asking for 700 GB everywhere means they queue behind each other on the few
 large nodes.

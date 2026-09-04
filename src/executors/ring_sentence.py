@@ -65,7 +65,7 @@ def word_cores(angles: torch.Tensor, arity: int, dtype=torch.complex64):
 def ring_recipe(ansatz, tn):
     """One operand per WIRE of each word, rather than one per word.
 
-    The grammar bookkeeping is unchanged - fresh physical wires per word, then
+    The grammar bookkeeping is unchanged, fresh physical wires per word, then
     rewriting indices when a CCG index is already bound. Bond characters come
     from the same generator so they can never collide with wire characters,
     which is why the blanket rewrite below stays safe.

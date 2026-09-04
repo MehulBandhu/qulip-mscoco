@@ -12,7 +12,7 @@ the bond at all. So L layers give bond dimension exactly
     D = 2^L
 
 and at the L=2 used here, D = 4. A 21-wire word becomes 21 cores of shape
-[4, 2, 4] - 672 complex numbers rather than 2,097,152 - with no truncation and
+[4, 2, 4] - 672 complex numbers rather than 2,097,152, with no truncation and
 no approximation. Cost per word goes from O(L*N*2^N) to O(L*N*D^3), linear in N.
 
 The cores can go straight into the sentence contraction: each core's physical

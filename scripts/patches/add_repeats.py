@@ -1,6 +1,6 @@
 """Apply the CNOT ring more than once per layer.
 
-Depth keeps helping - L=4 beats L=3 beats L=2 - and the likely reason is reach
+Depth keeps helping, L=4 beats L=3 beats L=2, and the likely reason is reach
 rather than expressiveness. The ring is 0->1->2->...->0, so information moves
 one hop per layer; at 21 wires it takes 21 layers to cross a word and we have
 two to four. Every extra layer is another hop.
@@ -11,7 +11,7 @@ with one, but the reach of L=4. If it matches L=4, reach is what depth was
 buying. If L=4 still wins, the extra rotations matter too.
 
 A log-depth entangler would mix faster still, but it would break the tensor-ring
-representation - the bond dimension is 2^L only because the ring is
+representation, the bond dimension is 2^L only because the ring is
 nearest-neighbour, with exactly one CNOT crossing any cut per layer. Long-range
 gates put many CNOTs across the middle cut and the bond blows up. Repeating a
 local ring keeps the bound at 2^(L*R).

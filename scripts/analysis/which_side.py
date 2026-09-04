@@ -9,13 +9,13 @@ CLIP's own representation:
     CLIP text    + CLIP image      the ceiling
 
 Whichever substitution recovers more is the side with slack; whichever barely
-moves is already saturated. Nothing is trained - this only runs existing
+moves is already saturated. Nothing is trained, this only runs existing
 checkpoints and CLIP over the test split.
 
 One wrinkle worth stating: the quantum states are 512 complex amplitudes and
 CLIP's are 512 reals, so a mixed pair compares vectors from spaces that were
 never aligned to each other. The mixed numbers are therefore a floor on what
-each side could do, not a fair estimate - they say "at least this much", and a
+each side could do, not a fair estimate, they say "at least this much", and a
 large gap between the two mixed rows is the signal.
 
     python which_side.py -cfg configs/vqcfull_fast.yaml -cp <checkpoint>

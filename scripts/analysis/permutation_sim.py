@@ -1,6 +1,6 @@
 """Compare a caption's state with that of its word-order-corrupted variant.
 
-ARO transfer inverted as retrieval improved - 0.563 on relation at epoch 13,
+ARO transfer inverted as retrieval improved, 0.563 on relation at epoch 13,
 0.410 by epoch 99, both against chance 0.50. Two things worth separating.
 
 First, attribution against relation: they are different corruptions (swapped

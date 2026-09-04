@@ -5,7 +5,7 @@ untouched.
 
   text.oov_fallback: true
       An unseen gate currently routes to one slot pinned at zero. Zero is not a
-      neutral angle here - the circuit opens with Hadamards, so every unknown
+      neutral angle here, the circuit opens with Hadamards, so every unknown
       word ends up in the same all-plus state whether it is a noun or a
       transitive verb. This gives each grammatical role its own learnable
       fallback instead: roughly a few hundred extra angles covering the 42% of

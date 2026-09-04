@@ -1,9 +1,9 @@
 """Sweep a linear mixture of the quantum and CLIP similarity matrices.
 
-Scores every image-caption pair twice on the 5,000-image test set - once with
-CLIP's own text encoder, once with the trained quantum tower - and sweeps
+Scores every image-caption pair twice on the 5,000-image test set, once with
+CLIP's own text encoder, once with the trained quantum tower, and sweeps
 
-    S = (1 - lam) * S_clip + lam * S_quantum
+    S = (1, lam) * S_clip + lam * S_quantum
 
 Nothing is trained. If no mixture beats lam = 0, the quantum ranking adds
 nothing and the fusion idea stops there.
@@ -11,7 +11,7 @@ nothing and the fusion idea stops there.
 Two anchors make the result trustworthy. At lam = 0 the table must reproduce
 the validated zero-shot CLIP figure of about 48.4 R@1, and at lam = 1 it must
 reproduce the quantum model's own benchmark. If either is wrong, the caption
-ordering or the mask is broken and nothing in between means anything - so both
+ordering or the mask is broken and nothing in between means anything, so both
 are checked and reported rather than assumed.
 
     python fuse_clip.py -cfg configs/vqcfull_fast.yaml -cp <checkpoint>
@@ -98,7 +98,7 @@ def main():
         sizes.append(n)
     if captions and len(captions) != q_txt.shape[0]:
         raise SystemExit(f"{len(captions)} captions against {q_txt.shape[0]} "
-                         f"states - the ordering does not line up")
+                         f"states. The ordering does not line up")
     if sizes != per_image:
         raise SystemExit("per-image caption counts differ between the dataframe "
                          "and the loader")

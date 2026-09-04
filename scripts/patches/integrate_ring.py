@@ -4,8 +4,8 @@ Verified beforehand: forward exact to 1e-07 against the dense compact path,
 gradients to ~2e-05 relative, and 37x faster at n=3 on real captions.
 
 Off unless a config sets `text.ring: true`, so runs already in flight keep the
-path they started on. Ring implies compact - both emit word specs rather than
-gate lists - so the ring branch is checked first.
+path they started on. Ring implies compact, both emit word specs rather than
+gate lists, so the ring branch is checked first.
 
     python scripts/patches/integrate_ring.py --check
     python scripts/patches/integrate_ring.py
@@ -25,7 +25,7 @@ RING_METHOD = '''
 
         A CNOT ring is a running XOR, so it is a bond-dimension-2 operator and L
         layers give bond dimension exactly 2^L. That lets a word be represented
-        by N small cores instead of a 2^N statevector - at 21 wires, 672 numbers
+        by N small cores instead of a 2^N statevector. At 21 wires that is 672 numbers
         rather than 2,097,152, exactly and with no truncation.
 
         Each core carries [left_bond, grammar_wire, right_bond]. The bonds are
@@ -100,7 +100,7 @@ FORWARD_METHOD = '''
         if arity > 1:
             ring = torch.stack(
                 [self._cnot_ring_mpo(True).to(dev)]
-                + [self._cnot_ring_mpo(False).to(dev)] * (arity - 1))
+                + [self._cnot_ring_mpo(False).to(dev)] * (arity, 1))
 
         for l in range(layers):
             rot = torch.stack([

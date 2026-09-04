@@ -1,7 +1,7 @@
 """Train with several captions of the same image as positives in one batch.
 
 Training currently samples one caption per image per epoch. Over 100 epochs
-every caption is seen about twenty times, so nothing is wasted - but the five
+every caption is seen about twenty times, so nothing is wasted, but the five
 captions of an image are never present in the same batch, so the model is never
 told that different wordings describe the same picture.
 
@@ -12,10 +12,10 @@ experiments already showed fewer negatives hurts.
 
 Two details matter:
 
-  - image-to-text uses soft targets, 1/K on each of that image's captions. A
+  Image-to-text uses soft targets, 1/K on each of that image's captions. A
     logsumexp over the positives would let the model satisfy the loss by ranking
     one caption highly and ignoring the rest.
-  - the purity penalty must skip same-image caption pairs. It exists to stop
+  The purity penalty must skip same-image caption pairs. It exists to stop
     captions collapsing together, and unmasked it would push apart exactly the
     pairs this objective is trying to bring together.
 
@@ -82,7 +82,7 @@ def multi_mapper(batch):
 
     A row holds a list of that image's captions in both modes. train_epoch
     flattens for the loss, and global_retrieval does its own flattening for
-    evaluation - doing it here as well made it treat every caption as a
+    evaluation, doing it here as well made it treat every caption as a
     separate image.
     """
     return batch["image"], batch["caption"]

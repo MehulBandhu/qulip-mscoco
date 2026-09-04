@@ -1,7 +1,7 @@
 """Break test-set recall down by caption length, circuit size and vocabulary coverage.
 
 Scores the test set once, keeps the rank of every caption, and joins that to
-what the caption looks like - how long it is, how wide its circuit is, whether
+what the caption looks like, how long it is, how wide its circuit is, whether
 it contains words the model never saw, and which grammatical types it uses.
 
 The aggregate recall hides all of this. A model that handles short captions and

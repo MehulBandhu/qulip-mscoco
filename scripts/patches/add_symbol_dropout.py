@@ -2,7 +2,7 @@
 
 The fallback angles added for unseen symbols never received a gradient: during
 training every symbol is registered, so the fallback branch is dead code and the
-angles stay at their initial values. Measured directly - 95% of table slots
+angles stay at their initial values. Measured directly, 95% of table slots
 moved over a run, 0% of fallback slots, max delta exactly zero.
 
 Symbol dropout fixes that. Each forward pass picks a fraction of the vocabulary

@@ -5,7 +5,7 @@ to 6.7e-06, and the forward pass runs 18.2x faster with operands per caption
 dropping from 283.8 to 10.2.
 
 Everything here is OFF unless a config sets `text.compact: true`, so runs
-already in flight - and the benchmark processes they spawn when they finish -
+already in flight, and the benchmark processes they spawn when they finish -
 keep taking the old path.
 
 The word spec deliberately carries its angle names as {'name', 'op_type'} dicts,
@@ -32,7 +32,7 @@ COMPACT_METHOD = '''
         A word's gates never touch another word until its output wires reach
         the grammatical contraction, so each word can be collapsed into a
         single tensor first and words of the same arity simulated together.
-        Contraction is associative, so this is the same network - the wire
+        Contraction is associative, so this is the same network, and the wire
         bookkeeping below matches tn2ansatz exactly.
 
         Returns (einsum over word tensors, [word spec]). Each spec carries its

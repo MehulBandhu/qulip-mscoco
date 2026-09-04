@@ -5,7 +5,7 @@ directions, normalise them to the scale of the weights themselves, and sweep a
 grid of loss values across the plane they span.
 
 Worth doing for this project because the usual explanation for why variational
-circuits train badly is barren plateaus - landscapes flat enough that gradients
+circuits train badly is barren plateaus, landscapes flat enough that gradients
 carry almost no signal. Running this on both towers says whether that is what
 is happening here or whether it is something else.
 

@@ -6,7 +6,7 @@ exponentially with circuit size, every starting point looks alike and there is
 nothing for the optimiser to follow.
 
 Earlier work here measured gradient norms on a TRAINED model, which cannot
-answer this - a converged model sits in a basin by construction. This resamples
+answer this, a converged model sits in a basin by construction. This resamples
 the text tower's parameters without any training and measures the variance of
 the loss, for increasing qubits per grammatical type.
 

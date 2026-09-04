@@ -5,7 +5,7 @@ holding and held. With 175,434 of ~339,000 symbols appearing exactly once and
 42% of test symbols unseen, that duplication is where the model starves.
 
 This changes only the lexical key. The CCG type, the wiring, the contraction and
-the output qubits are untouched, and no classical network is added - which is the
+the output qubits are untouched, and no classical network is added, which is the
 difference from the angle generator, where a shared MLP replaced the whole table
 and lost the memorisation that frequent words benefit from. Here frequent words
 still learn independently of unrelated words; only inflections of the same stem

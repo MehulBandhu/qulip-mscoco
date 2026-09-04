@@ -5,7 +5,7 @@ compile_results.py. Writes report/scaling.md and report/fig_scaling_*.pdf.
 
 Every fit is bootstrapped over the points, so the confidence intervals reflect
 how few configurations there are rather than pretending otherwise. With one run
-per configuration these are descriptive, not inferential - seeds are what would
+per configuration these are descriptive, not inferential, seeds are what would
 make them inferential, and the report says so.
 
     python scaling_analysis.py

@@ -2,7 +2,7 @@
 training code until it has been verified.
 
 The CNOT ring is currently applied one gate at a time, and each gate does a
-movedim, a stack and a flip - so a full pass over the statevector, N times per
+movedim, a stack and a flip, so a full pass over the statevector, N times per
 layer. But a ring of CNOTs is a linear map over GF(2): every gate sends a basis
 state to another basis state, so the whole ring is one permutation of the 2^N
 amplitudes. Precompute it once per arity and the N passes become a single
@@ -31,7 +31,7 @@ def cnot_ring_permutation(arity: int) -> torch.Tensor:
     """Index map for a full CNOT ring, as a gather over the 2^N amplitudes.
 
     Applying CNOT(c, c+1) puts the amplitude that was at (x with bit c+1
-    flipped when bit c is set) into position x - a gather, not a scatter. The
+    flipped when bit c is set) into position x, a gather, not a scatter. The
     ring applies gates 0..N-1 in order, so composing the gathers means walking
     the gates backwards.
     """

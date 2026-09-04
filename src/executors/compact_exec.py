@@ -1,7 +1,7 @@
 """Contract each word's gates into one tensor before the sentence network.
 
-The current path hands opt_einsum every gate of every word - about 269 operands
-per caption - and pays Python dispatch on all of them. But a word's gates never
+The current path hands opt_einsum every gate of every word, about 269 operands
+per caption, and pays Python dispatch on all of them. But a word's gates never
 touch another word until its output wires reach the grammatical contraction, so
 each word can be collapsed into a single tensor first. Words of the same arity
 have identical circuit structure, so they all simulate together in a handful of
@@ -37,8 +37,8 @@ def compact_recipe(ansatz, tn):
 
     Mirrors BaseAnsatz.tn2ansatz exactly, except that a word contributes a
     single tensor carrying its N output wires rather than a chain of gates.
-    The wire bookkeeping - fresh chars per word, then rewriting indices when a
-    CCG index is already bound - is unchanged, so the resulting network is the
+    The wire bookkeeping, fresh chars per word, then rewriting indices when a
+    CCG index is already bound, is unchanged, so the resulting network is the
     same one the gate-level path builds, just already contracted per word.
     """
     ansatz.reset_char()
